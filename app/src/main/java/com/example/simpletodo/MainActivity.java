@@ -1,13 +1,14 @@
 package com.example.simpletodo;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     EditText textEntered;
     RecyclerView recyclerView;
     ItemAdapter itemAdapter;
+    public static final String KEY_ITEM_NAME = "item_name";
+    public static final String KEY_ITEM_POS = "item_pos";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.ListViewRecycle);
 
         loadItems();
-
         updateAdapters();
 
     }
@@ -54,6 +56,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateAdapters(){
+
+        ItemAdapter.OnClickListener onClickListener = (int position) -> {
+            Intent editIntent = new Intent(MainActivity.this, EditText.class);
+            editIntent.putExtra(KEY_ITEM_NAME, itemsList.get(position));
+            editIntent.putExtra(KEY_ITEM_POS, position);
+            startActivityForResult(editIntent, 2);
+        };
+
+
         ItemAdapter.OnLongClickListener onLongClickListener = position -> {
             // 1)remove from the array list, 2) notify the adapter, 3) make a toast
             if(position < itemsList.size()) {
@@ -64,9 +75,25 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        itemAdapter = new ItemAdapter(itemsList, onLongClickListener);
+        itemAdapter = new ItemAdapter(itemsList, onLongClickListener, onClickListener);
         recyclerView.setAdapter(itemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    //handle result of edit
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 2) {
+            String itemName = data.getStringExtra(KEY_ITEM_NAME);
+            int pos = data.getIntExtra(KEY_ITEM_POS,-1);
+            itemsList.set(pos, itemName);
+            itemAdapter.notifyItemChanged(pos);
+            saveData();
+            Toast.makeText(MainActivity.this, "Item Updated Successfully!", Toast.LENGTH_LONG).show();
+        }
     }
 
     //this will return the file which will store the items from our lis
