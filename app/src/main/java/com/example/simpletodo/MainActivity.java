@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     List<String> itemsList;
     EditText textEntered;
     RecyclerView recyclerView;
+    ItemAdapter itemAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         if(!textEntered.getText().toString().equals("")){
             itemsList.add(textEntered.getText().toString());
             textEntered.setText("");
-            updateAdapters();
+            itemAdapter.notifyItemInserted(itemsList.size()-1);
+            Toast.makeText(MainActivity.this, "Item Successfully Added!", Toast.LENGTH_LONG).show();
         }
         else{
             textEntered.setError("Enter text");
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateAdapters(){
-        ItemAdapter itemAdapter = new ItemAdapter(itemsList);
+        itemAdapter = new ItemAdapter(itemsList);
         recyclerView.setAdapter(itemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

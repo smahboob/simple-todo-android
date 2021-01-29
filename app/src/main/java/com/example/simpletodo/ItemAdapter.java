@@ -58,6 +58,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         //update the view inside of the view holder with the data
         public void bind(String item) {
             tvItem.setText(item);
+            tvItem.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    //remove the item from the recycler view
+
+                    return false;
+                }
+            });
         }
     }
 }
