@@ -4,17 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 public class EditList extends AppCompatActivity {
 
-    private static final String KEY_ITEM_NAME = "updated_name";
-    private static final String KEY_ITEM_POS = "updated_pos";
     private EditText updatedText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.d("LOGS", "CAME HERE");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_list);
         getSupportActionBar().setTitle("Edit Item");
@@ -29,7 +30,9 @@ public class EditList extends AppCompatActivity {
     //user is done editing, update the list item
     public void updateList(View view){
         Intent backToMain = new Intent(EditList.this, MainActivity.class);
-        backToMain.putExtra(KEY_ITEM_NAME, updatedText.getText().toString());
-        backToMain.putExtra(KEY_ITEM_POS, getIntent().getIntExtra(MainActivity.KEY_ITEM_POS,-1));
+        backToMain.putExtra(MainActivity.KEY_ITEM_NAME, updatedText.getText().toString());
+        backToMain.putExtra(MainActivity.KEY_ITEM_POS, getIntent().getIntExtra(MainActivity.KEY_ITEM_POS,-1));
+        setResult(RESULT_OK, backToMain);
+        finish();
     }
 }

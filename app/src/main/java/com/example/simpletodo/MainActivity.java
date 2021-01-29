@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     public void updateAdapters(){
 
         ItemAdapter.OnClickListener onClickListener = (int position) -> {
-            Intent editIntent = new Intent(MainActivity.this, EditText.class);
+            Intent editIntent = new Intent(MainActivity.this, EditList.class);
             editIntent.putExtra(KEY_ITEM_NAME, itemsList.get(position));
             editIntent.putExtra(KEY_ITEM_POS, position);
             startActivityForResult(editIntent, 2);
@@ -81,14 +82,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //handle result of edit
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == 2) {
             String itemName = data.getStringExtra(KEY_ITEM_NAME);
-            int pos = data.getIntExtra(KEY_ITEM_POS,-1);
+            int pos = data.getIntExtra(KEY_ITEM_POS, -1);
             itemsList.set(pos, itemName);
             itemAdapter.notifyItemChanged(pos);
             saveData();
