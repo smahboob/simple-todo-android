@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.ListViewRecycle);
 
         itemsList.add("Buy Milk");
-        itemsList.add("Buy Sugar");
-        itemsList.add("Buy Cake");
+        itemsList.add("Complete Computer Science Homework");
+        itemsList.add("Make dinner by 6:00");
 
         updateAdapters();
 
@@ -51,7 +51,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateAdapters(){
-        itemAdapter = new ItemAdapter(itemsList);
+        ItemAdapter.OnLongClickListener onLongClickListener = position -> {
+            // 1)remove from the array list, 2) notify the adapter, 3) make a toast
+            if(position < itemsList.size()) {
+                itemsList.remove(position);
+                itemAdapter.notifyItemRemoved(position);
+                Toast.makeText(MainActivity.this, "Item Successfully Removed!", Toast.LENGTH_LONG).show();
+            }
+        };
+
+        itemAdapter = new ItemAdapter(itemsList, onLongClickListener);
         recyclerView.setAdapter(itemAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
