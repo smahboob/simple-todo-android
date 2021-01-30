@@ -74,7 +74,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        todoItemText = todoItemText +  "  --> Date: " + dayOfMonth + " - " + (month+1) + " - " + year;
+        String mMonth;
+        String mDate;
+        mMonth = month < 10 ? "0"+(month+1) : ""+month;
+        mDate = dayOfMonth < 10 ? "0"+dayOfMonth : ""+dayOfMonth;
+
+        todoItemText = todoItemText +  "  --> Date: " + mDate + "-" + mMonth + "-" + year;
         showTimePickerDialog();
     }
 
@@ -88,7 +93,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        todoItemText = todoItemText + "  -->Time: " + hourOfDay + ":" + minute;
+                        String mmHour;
+                        String mmMinute;
+                        mmHour = hourOfDay < 10 ? "0"+hourOfDay : ""+hourOfDay;
+                        mmMinute = minute < 10 ? "0"+minute : ""+minute;
+
+                        todoItemText = todoItemText + "  -->Time: " + mmHour + ":" + mmMinute;
                         itemsList.add(todoItemText);
                         textEntered.setText("");
                         itemAdapter.notifyItemInserted(itemsList.size()-1);
