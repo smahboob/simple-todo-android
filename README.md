@@ -21,13 +21,17 @@ The following **optional** features are implemented:
 
 Work in Progress:
 * [ ] User can **update date and time for an existing task**
-* [ ] Improved UI
+* [ ] Improved UI **Card view for recycler view**
 
 
 
 
 ## Video Walkthrough
 <img src='http://g.recordit.co/YxuPktMMMz.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+## Updated Version with Date & Time Feature
+<img src='https://recordit.co/kk8QiE2viv' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
 
 ## License
 
