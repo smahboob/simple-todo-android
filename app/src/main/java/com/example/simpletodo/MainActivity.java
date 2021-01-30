@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
@@ -18,14 +22,17 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     List<String> itemsList;
     EditText textEntered;
     RecyclerView recyclerView;
     ItemAdapter itemAdapter;
+    String todoItemText;
     public static final String KEY_ITEM_NAME = "item_name";
     public static final String KEY_ITEM_POS = "item_pos";
 
@@ -43,17 +50,54 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AddItem(View view){
-        if(!textEntered.getText().toString().equals("")){
-            itemsList.add(textEntered.getText().toString());
-            textEntered.setText("");
-            itemAdapter.notifyItemInserted(itemsList.size()-1);
-            saveData();
-            Toast.makeText(MainActivity.this, "Item Successfully Added!", Toast.LENGTH_LONG).show();
+        todoItemText = textEntered.getText().toString();
+        if(!todoItemText.equals("")){
+            showDatePickerDialog();
         }
         else{
-            textEntered.setError("Enter text");
+            textEntered.setError("Enter text!");
             textEntered.requestFocus();
         }
+    }
+
+    private void showDatePickerDialog(){
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                this,
+                (DatePickerDialog.OnDateSetListener) this,
+                Calendar.getInstance().get(Calendar.YEAR),
+                Calendar.getInstance().get(Calendar.MONTH),
+                Calendar.getInstance().get(Calendar.DATE)
+                );
+        datePickerDialog.show();
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        todoItemText = todoItemText +  "  --> Date: " + dayOfMonth + " - " + (month+1) + " - " + year;
+        showTimePickerDialog();
+    }
+
+    private void showTimePickerDialog(){
+        final Calendar c = Calendar.getInstance();
+        int mHour = c.get(Calendar.HOUR);
+        int mMinute = c.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        todoItemText = todoItemText + "  -->Time: " + hourOfDay + ":" + minute;
+                        itemsList.add(todoItemText);
+                        textEntered.setText("");
+                        itemAdapter.notifyItemInserted(itemsList.size()-1);
+                        saveData();
+                        Toast.makeText(MainActivity.this, "Item Successfully Added!", Toast.LENGTH_LONG).show();
+                    }
+                }, mHour, mMinute, false);
+        timePickerDialog.show();
+
     }
 
     public void updateAdapters(){
@@ -120,4 +164,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "Unable to save data!", Toast.LENGTH_LONG).show();
         }
     }
+
 }

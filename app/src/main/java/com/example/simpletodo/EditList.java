@@ -29,10 +29,17 @@ public class EditList extends AppCompatActivity {
 
     //user is done editing, update the list item
     public void updateList(View view){
-        Intent backToMain = new Intent(EditList.this, MainActivity.class);
-        backToMain.putExtra(MainActivity.KEY_ITEM_NAME, updatedText.getText().toString());
-        backToMain.putExtra(MainActivity.KEY_ITEM_POS, getIntent().getIntExtra(MainActivity.KEY_ITEM_POS,-1));
-        setResult(RESULT_OK, backToMain);
-        finish();
+
+        if(!updatedText.getText().equals("")){
+            Intent backToMain = new Intent(EditList.this, MainActivity.class);
+            backToMain.putExtra(MainActivity.KEY_ITEM_NAME, updatedText.getText().toString());
+            backToMain.putExtra(MainActivity.KEY_ITEM_POS, getIntent().getIntExtra(MainActivity.KEY_ITEM_POS,-1));
+            setResult(RESULT_OK, backToMain);
+            finish();
+        }
+        else{
+            updatedText.setError("Enter text to update!");
+        }
+
     }
 }
