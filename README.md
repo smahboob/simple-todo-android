@@ -21,6 +21,8 @@ The following **optional** features are implemented:
 
 ## Video Walkthrough
 
+http://g.recordit.co/YxuPktMMMz.gif
+
 ## License
 
     Copyright [yyyy] [name of copyright owner]
