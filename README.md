@@ -20,8 +20,7 @@ The following **optional** features are implemented:
 
 
 ## Video Walkthrough
-
-http://g.recordit.co/YxuPktMMMz.gif
+<img src='http://g.recordit.co/YxuPktMMMz.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## License
 
