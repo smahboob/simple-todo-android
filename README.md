@@ -19,7 +19,7 @@ The following **optional** features are implemented:
 * [x] User can **tap a todo item in the list and bring up an edit screen for the todo item** and then have any changes to the text reflected in the todo list
 
 Work in Progress:
-* [ ] User can **add date and time for a task*
+* [ ] User can **add date and time for a task**
 * [ ] Improved UI
 
 
