@@ -99,9 +99,27 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
                 onClickListener.onItemClicked(getAdapterPosition());
             });
 
-            todoItem.setOnLongClickListener(v -> {
+            date.setOnClickListener(v -> {
+                onClickListener.onItemClicked(getAdapterPosition());
+            });
+
+            time.setOnClickListener(v -> {
+                onClickListener.onItemClicked(getAdapterPosition());
+            });
+
+            date.setOnLongClickListener(v -> {
                 //remove the item from the recycler view
                 //this is just notifying of that which position was long pressed
+                longClickListener.onItemLongClicked(getAdapterPosition());
+                return true;
+            });
+
+            todoItem.setOnLongClickListener(v -> {
+                longClickListener.onItemLongClicked(getAdapterPosition());
+                return true;
+            });
+
+            time.setOnLongClickListener(v -> {
                 longClickListener.onItemLongClicked(getAdapterPosition());
                 return true;
             });
