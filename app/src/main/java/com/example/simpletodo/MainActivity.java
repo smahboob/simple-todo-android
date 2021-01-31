@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         mMonth = month < 10 ? "0"+(month+1) : ""+month;
         mDate = dayOfMonth < 10 ? "0"+dayOfMonth : ""+dayOfMonth;
 
-        todoItemText = todoItemText +  "  --> Date: " + mDate + "-" + mMonth + "-" + year;
+        todoItemText = todoItemText +  " * Date: " + mMonth + "-" + mDate + "-" + year;
         showTimePickerDialog();
     }
 
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         mmHour = hourOfDay < 10 ? "0"+hourOfDay : ""+hourOfDay;
                         mmMinute = minute < 10 ? "0"+minute : ""+minute;
 
-                        todoItemText = todoItemText + "  -->Time: " + mmHour + ":" + mmMinute;
+                        todoItemText = todoItemText + " # Time: " + mmHour + ":" + mmMinute;
                         itemsList.add(todoItemText);
                         textEntered.setText("");
                         itemAdapter.notifyItemInserted(itemsList.size()-1);

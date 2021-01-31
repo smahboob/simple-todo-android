@@ -1,11 +1,14 @@
 package com.example.simpletodo;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.w3c.dom.Text;
@@ -38,7 +41,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //use layout inflater to inflate a view
-        View todoView = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+        View todoView = LayoutInflater.from(parent.getContext()).inflate(R.layout.todo_card_layout, parent, false);
         return new ViewHolder(todoView);
     }
 
@@ -63,22 +66,40 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
     //container to provide easy access to view that represent each row of the list
     class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvItem;
+        TextView todoItem;
+        TextView date;
+        TextView time;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvItem = itemView.findViewById(android.R.id.text1);
+            todoItem = itemView.findViewById(R.id.todoItemText);
+            date = itemView.findViewById(R.id.dateText);
+            time = itemView.findViewById(R.id.timeText);
+
         }
 
         //update the view inside of the view holder with the data
         public void bind(String item) {
-            tvItem.setText(item);
+            int idx = item.indexOf('*');
+            int idx1 = item.indexOf('#');
+            String todo = item.substring(0, idx-1);
+            String mDate = item.substring(idx+1, idx1-1);
+            String mTime = item.substring(idx1+1);
 
-            tvItem.setOnClickListener(v -> {
+            todoItem.setText(todo);
+            date.setText(mDate);
+            time.setText(mTime);
+
+            todoItem.setPadding(25,5,0,0);
+            date.setPadding(18,0,0,0);
+            time.setPadding(18,0,0,20);
+
+            todoItem.setOnClickListener(v -> {
                 onClickListener.onItemClicked(getAdapterPosition());
             });
 
-            tvItem.setOnLongClickListener(v -> {
+            todoItem.setOnLongClickListener(v -> {
                 //remove the item from the recycler view
                 //this is just notifying of that which position was long pressed
                 longClickListener.onItemLongClicked(getAdapterPosition());
