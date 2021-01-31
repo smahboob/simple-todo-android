@@ -1,6 +1,6 @@
 # Project 1 - *SimpleTodo*
 
-**SimpleTodo* is an android app that allows building a todo list and basic todo items management functionality including adding new items, editing and deleting an existing item.
+**SimpleTodo** is an android app that allows building a todo list and basic todo items management functionality including adding new items, editing and deleting an existing item.
 
 Submitted by: **Saad Mahboob**
 
@@ -18,10 +18,10 @@ The following **optional** features are implemented:
 
 * [x] User can **tap a todo item in the list and bring up an edit screen for the todo item** and then have any changes to the text reflected in the todo list
 * [x] User can **add date and time for a new task**
+* [x] Improved UI **Card view for recycler view**
 
 Work in Progress:
 * [ ] User can **update date and time for an existing task**
-* [ ] Improved UI **Card view for recycler view**
 
 
 
@@ -29,8 +29,8 @@ Work in Progress:
 ## Video Walkthrough
 <img src='http://g.recordit.co/YxuPktMMMz.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-## Updated Version with Date & Time Feature
-<img src='http://g.recordit.co/kk8QiE2viv.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+## Updated Version (Improved UI & Date and Time option)
+<img src='http://g.recordit.co/h5r12e57ON.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 ## License
