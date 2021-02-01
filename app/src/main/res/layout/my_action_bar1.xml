@@ -12,7 +12,7 @@
         android:id="@+id/my_action_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Edit Task"
+        android:text="@string/edit_task"
         android:gravity="center"
         android:textSize="28sp"
         android:textStyle="bold"/>

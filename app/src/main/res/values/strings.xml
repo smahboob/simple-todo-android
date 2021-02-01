@@ -2,4 +2,12 @@
     <string name="app_name">SimpleTodo</string>
     <string name="addString">Add</string>
     <string name="add_an_item_here_String">Add an item here!</string>
+    <string name="update_time">Update Time</string>
+    <string name="update_date">Update Date</string>
+    <string name="return_to_main">Return to main</string>
+    <string name="update_task">Update Task</string>
+    <string name="update_item">Update Item</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="todo_task_manager">Todo Task Manager</string>
+    <string name="todo">TODO</string>
 </resources>
