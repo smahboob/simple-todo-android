@@ -27,13 +27,6 @@ Work in Progress:
 ## Updated Version (Improved UI & Date and Time option)
 <img src='http://g.recordit.co/h5r12e57ON.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-## Work in Progress 
-* [x] New Action Bar
-* [x] Update Task with already provided date and time
-<img src='http://g.recordit.co/IlkzpDlCD1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-## Basic Version
-<img src='http://g.recordit.co/YxuPktMMMz.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 ## License
